@@ -5,6 +5,11 @@ import {Register} from "./register";
 
 function App() {
   const [message, setMessage] = useState("");
+  const [currentForm, setCurrentForm] =useState('login');
+
+  const toggleForm = (formName) => {
+    setCurrentForm(formName);
+  }
 
   useEffect(() => {
     fetch("http://localhost:3003/message")
@@ -19,8 +24,11 @@ function App() {
 
   return (
     <div className="App">
+      {
+        currentForm === 'login' ? <Login onFormSwitch={toggleForm}/> : <Register onFormSwitch={toggleForm}/>
+      }
       <h1>{message}</h1>
-      <Login/>
+     
     </div>
 
 

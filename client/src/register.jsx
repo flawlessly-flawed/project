@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 
 
-export const Register = () =>{
+export const Register = (props) =>{
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
@@ -37,6 +37,7 @@ export const Register = () =>{
     
 
     return(
+        <>
         <form onSubmit={handleSubmit} method="POST">
             <label For="name">name</label>
             <input value={name} onChange={(e) => setName(e.target.value)} type="name" placeholder="name" id="name" name="name"/>
@@ -48,5 +49,9 @@ export const Register = () =>{
             <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="password" id="password" name="pass"/>
             <button>Register</button>
         </form>
+        <button onClick={() => props.onFormSwitch('login')} >already have an account? login</button>
+
+        </>
+        
     )
 }
